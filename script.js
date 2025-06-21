@@ -9,8 +9,6 @@ text.textContent = "";
 const zeroToNine = Array.from(numbers);
 const symbolArray = Array.from(symbols);
 
-let operand1 = [];
-let operand2 = [];
 let operator = [];
 
 function add(a, b) {
@@ -28,23 +26,6 @@ function multiply(a, b) {
 function divide(a, b) {
   return Number(a) / Number(b);
 }
-
-zeroToNine.forEach((number) => {
-  number.addEventListener("click", (e) => {
-    let item = e.target.value;
-    text.textContent += item;
-    console.log(item);
-  });
-});
-
-symbols.forEach((symbol) => {
-  symbol.addEventListener("click", (e) => {
-    let item = e.target.value;
-    console.log(typeof item);
-    text.textContent += item;
-    operator.push(item);
-  });
-});
 
 function evaluate(exp) {
   let result;
@@ -67,4 +48,25 @@ function evaluate(exp) {
   return result;
 }
 
-console.log(evaluate(["1", "2", "-", "1", "2"]));
+zeroToNine.forEach((number) => {
+  number.addEventListener("click", (e) => {
+    let item = e.target.value;
+    text.textContent += item;
+    operator.push(item);
+    console.log(operator);
+  });
+});
+
+symbols.forEach((symbol) => {
+  symbol.addEventListener("click", (e) => {
+    let item = e.target.value;
+    text.textContent += item;
+    operator.push(item);
+    console.log(operator);
+  });
+});
+
+equals.addEventListener("click", () => {
+  console.log(evaluate(operator));
+  text.textContent = evaluate(operator);
+});
