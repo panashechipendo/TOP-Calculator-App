@@ -173,6 +173,7 @@ clear.addEventListener("click", () => {
   expressionParts.length = 0;
 });
 
+// Deletes lst element from expression
 del.addEventListener("click", () => {
   if (expressionParts.length == 0) {
     return;
