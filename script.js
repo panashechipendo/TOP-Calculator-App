@@ -188,7 +188,7 @@ del.addEventListener("click", () => {
     symbolArray.forEach((symbol) => {
       symbol.disabled = false;
     });
-  }
+  } 
   console.log(expressionParts);
   text.textContent = text.textContent.slice(0, -1);
 });

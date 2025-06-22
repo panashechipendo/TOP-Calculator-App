@@ -1,2 +1,3 @@
 # TOP-Calculator-App
-A The Odi Projet calculator App
+
+A The Odin Project calculator App
