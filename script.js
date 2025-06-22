@@ -7,7 +7,8 @@ const equals = document.querySelector(".equals");
 const display = document.querySelector(".input-container");
 const clear = document.querySelector(".clear");
 const text = document.createElement("h2");
-const back = document.createElement("button");
+const del = document.querySelector(".backspace");
+
 display.appendChild(text);
 text.textContent = "";
 
@@ -170,4 +171,23 @@ equals.addEventListener("click", () => {
 clear.addEventListener("click", () => {
   text.textContent = "";
   expressionParts.length = 0;
+});
+
+del.addEventListener("click", () => {
+  if (expressionParts.length == 0) {
+    return;
+  }
+  let removedEl = expressionParts.pop();
+  if (
+    removedEl == "+" ||
+    removedEl == "-" ||
+    removedEl == "*" ||
+    removedEl == "/"
+  ) {
+    symbolArray.forEach((symbol) => {
+      symbol.disabled = false;
+    });
+  }
+  console.log(expressionParts);
+  text.textContent = text.textContent.slice(0, -1);
 });

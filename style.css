@@ -70,7 +70,8 @@ button {
 .digit,
 .symbol,
 .period,
-.clear {
+.clear,
+.backspace {
   height: auto;
   max-width: auto;
   margin: 5px;
@@ -78,12 +79,21 @@ button {
 }
 
 .digit,
-.period {
+.period,
+.backspace {
   flex: 0 0 calc(100% / 4);
   width: 20px;
   height: 70px;
   background-color: darkslategray;
   color: wheat;
+}
+
+.digit:hover,
+.period:hover,
+.backspace:hover,
+.equals:hover {
+  background-color: lightslategray;
+  color: darkslategray;
 }
 
 .clear {
@@ -93,12 +103,22 @@ button {
   color: wheat;
 }
 
+.clear:hover {
+  background-color: lightcoral;
+  color: darkred;
+}
+
 .symbol {
   width: 80%;
   height: 70px;
   background-color: rgb(250, 169, 19);
   color: wheat;
   font-size: 30px;
+}
+
+.symbol:hover {
+  background-color: wheat;
+  color: rgb(250, 169, 19);
 }
 
 .equals {
