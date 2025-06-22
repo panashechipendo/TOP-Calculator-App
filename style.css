@@ -69,7 +69,8 @@ button {
 
 .digit,
 .symbol,
-.period {
+.period,
+.clear {
   height: auto;
   max-width: auto;
   margin: 5px;
@@ -85,10 +86,19 @@ button {
   color: wheat;
 }
 
+.clear {
+  width: 80%;
+  height: 70px;
+  background-color: darkred;
+  color: wheat;
+}
+
 .symbol {
   width: 80%;
   height: 70px;
   background-color: rgb(250, 169, 19);
+  color: wheat;
+  font-size: 30px;
 }
 
 .equals {
