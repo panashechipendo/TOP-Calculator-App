@@ -1,4 +1,5 @@
 // Grab needed elements
+const digitsCont = document.querySelector(".digitsContainer");
 const numbers = document.querySelectorAll(".digit");
 const symbols = document.querySelectorAll(".symbol");
 const period = document.querySelector(".period");
@@ -6,8 +7,11 @@ const equals = document.querySelector(".equals");
 const display = document.querySelector(".input-container");
 const clear = document.querySelector(".clear");
 const text = document.createElement("h2");
+const back = document.createElement("button");
 display.appendChild(text);
 text.textContent = "";
+
+text.style.marginTop = "10px";
 
 // Turn to array for ease of iteration
 const zeroToNine = Array.from(numbers);
@@ -15,6 +19,7 @@ const symbolArray = Array.from(symbols);
 
 // Main storage for expression
 let expressionParts = [];
+let result;
 
 // Initial button states
 zeroToNine.forEach((number) => {
@@ -67,6 +72,15 @@ function evaluate(exp) {
 zeroToNine.forEach((number) => {
   number.addEventListener("click", (e) => {
     let digit = e.target.value;
+
+    // Check if previous result present
+    if (expressionParts && result) {
+      expressionParts.length = 0;
+      expressionParts.push(digit);
+      text.textContent = digit;
+      result = "";
+      return;
+    }
 
     if (text.textContent == "0" && digit == "0") {
       return;
@@ -130,6 +144,7 @@ symbols.forEach((symbol) => {
   symbol.addEventListener("click", (e) => {
     let operator = e.target.value;
 
+    result = "";
     text.textContent += operator;
     expressionParts.push(operator);
     symbolArray.forEach((symbol) => {
@@ -142,6 +157,8 @@ symbols.forEach((symbol) => {
 equals.addEventListener("click", () => {
   console.log(evaluate(expressionParts));
   text.textContent = evaluate(expressionParts);
+  result = evaluate(expressionParts);
+  console.log(result);
   expressionParts.length = 0;
   expressionParts.push(text.textContent);
   symbolArray.forEach((symbol) => {

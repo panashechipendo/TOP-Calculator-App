@@ -15,8 +15,8 @@ h2 {
 }
 .calculator-container {
   background-color: white;
-  width: 800px;
-  height: 600px;
+  width: 50%;
+  height: 90%;
   margin: auto;
   margin-top: 30px;
   border: 2px solid darkblue;
