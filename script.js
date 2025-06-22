@@ -1,5 +1,7 @@
+// Grab needed elements
 const numbers = document.querySelectorAll(".digit");
 const symbols = document.querySelectorAll(".symbol");
+const period = document.querySelector(".period");
 const equals = document.querySelector(".equals");
 const display = document.querySelector(".input-container");
 const clear = document.querySelector(".clear");
@@ -7,9 +9,11 @@ const text = document.createElement("h2");
 display.appendChild(text);
 text.textContent = "";
 
+// Turn to array for ease of iteration
 const zeroToNine = Array.from(numbers);
 const symbolArray = Array.from(symbols);
 
+// Main storage for expression
 let expressionParts = [];
 
 // Initial button states
@@ -20,6 +24,7 @@ symbolArray.forEach((symbol) => {
   symbol.disabled = true;
 });
 equals.disabled = true;
+period.disabled = true;
 
 function add(a, b) {
   return Number(a) + Number(b);
@@ -37,9 +42,10 @@ function divide(a, b) {
   if (Number(b) == 0) {
     return alert("Yeah no you don't😂");
   }
-  return Number(a) / Number(b);
+  return (Number(a) / Number(b)).toFixed(2);
 }
 
+// Main math function to parse expression and pass to relevant function
 function evaluate(exp) {
   let result;
   for (let i = 0; i < exp.length; i++) {
@@ -57,6 +63,7 @@ function evaluate(exp) {
   return result;
 }
 
+// Add event listeners to all digit buttons
 zeroToNine.forEach((number) => {
   number.addEventListener("click", (e) => {
     let digit = e.target.value;
@@ -76,6 +83,8 @@ zeroToNine.forEach((number) => {
       });
       return;
     }
+
+    // Append to text and expression
     text.textContent += digit;
     expressionParts.push(digit);
     symbolArray.forEach((symbol) => {
@@ -111,6 +120,12 @@ zeroToNine.forEach((number) => {
   });
 });
 
+// Will finish later
+period.addEventListener("click", (e) => {
+  let dot = e.target.value;
+});
+
+// Event listeners for operators
 symbols.forEach((symbol) => {
   symbol.addEventListener("click", (e) => {
     let operator = e.target.value;
@@ -123,6 +138,7 @@ symbols.forEach((symbol) => {
   });
 });
 
+// Displays result and evaluates expression
 equals.addEventListener("click", () => {
   console.log(evaluate(expressionParts));
   text.textContent = evaluate(expressionParts);
@@ -133,6 +149,7 @@ equals.addEventListener("click", () => {
   });
 });
 
+// Clears display and text.textContent
 clear.addEventListener("click", () => {
   text.textContent = "";
   expressionParts.length = 0;

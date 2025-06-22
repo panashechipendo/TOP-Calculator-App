@@ -107,3 +107,7 @@ button {
   background-color: darkslategray;
   color: wheat;
 }
+
+button {
+  border: 2px solid darkblue;
+}
