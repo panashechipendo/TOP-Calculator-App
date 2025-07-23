@@ -108,24 +108,10 @@ zeroToNine.forEach((number) => {
 
     // Check whether the last element input is an operator
     if (
-      expressionParts[expressionParts.length - 1] == "+" ||
-      expressionParts[expressionParts.length - 1] == "-" ||
-      expressionParts[expressionParts.length - 1] == "*" ||
-      expressionParts[expressionParts.length - 1] == "/"
-    ) {
-      symbolArray.forEach((symbol) => {
-        symbol.disabled = true;
-      });
-    }
-    if (
-      (expressionParts.includes("+") &&
-        expressionParts[expressionParts.length - 1] != "+") ||
-      (expressionParts.includes("-") &&
-        expressionParts[expressionParts.length - 1] != "-") ||
-      (expressionParts.includes("*") &&
-        expressionParts[expressionParts.length - 1] != "*") ||
-      (expressionParts.includes("/") &&
-        expressionParts[expressionParts.length - 1] != "/")
+      expressionParts.includes("+") ||
+      expressionParts.includes("-") ||
+      expressionParts.includes("*") ||
+      expressionParts.includes("/")
     ) {
       symbolArray.forEach((symbol) => {
         symbol.disabled = true;
