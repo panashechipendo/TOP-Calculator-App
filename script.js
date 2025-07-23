@@ -30,18 +30,18 @@ symbolArray.forEach((symbol) => {
   symbol.disabled = true;
 });
 equals.disabled = true;
-period.disabled = true;
+period.disabled = false;
 
 function add(a, b) {
-  return Number(a) + Number(b);
+  return (Number(a) + Number(b)).toFixed(2);
 }
 
 function subtract(a, b) {
-  return Number(a) - Number(b);
+  return (Number(a) - Number(b)).toFixed(2);
 }
 
 function multiply(a, b) {
-  return Number(a) * Number(b);
+  return (Number(a) * Number(b)).toFixed(2);
 }
 
 function divide(a, b) {
@@ -49,6 +49,29 @@ function divide(a, b) {
     return alert("Yeah no you don't😂");
   }
   return (Number(a) / Number(b)).toFixed(2);
+}
+
+function checkForSymbol() {
+  let copied = expressionParts.slice();
+  let removedEl = copied.pop();
+  if (
+    removedEl == "+" ||
+    removedEl == "-" ||
+    removedEl == "*" ||
+    removedEl == "/"
+  ) {
+    return true;
+  }
+  return false;
+}
+
+function checkForPeriod() {
+  let copied = expressionParts.slice();
+  let removedEl = copied.pop();
+  if (removedEl == ".") {
+    return true;
+  }
+  return false;
 }
 
 // Main math function to parse expression and pass to relevant function
@@ -124,6 +147,16 @@ zeroToNine.forEach((number) => {
 // Will finish later
 period.addEventListener("click", (e) => {
   let dot = e.target.value;
+  let valid = checkForPeriod();
+  let valid2 = checkForSymbol();
+
+  if (expressionParts.length == 0 || valid2 || valid) {
+    return;
+  }
+
+  text.textContent += dot;
+  expressionParts.push(dot);
+  period.disabled = true;
 });
 
 // Event listeners for operators
@@ -137,6 +170,7 @@ symbols.forEach((symbol) => {
     symbolArray.forEach((symbol) => {
       symbol.disabled = true;
     });
+    period.disabled = false;
   });
 });
 
@@ -159,22 +193,18 @@ clear.addEventListener("click", () => {
   expressionParts.length = 0;
 });
 
-// Deletes lst element from expression
+// Deletes last element from expression
 del.addEventListener("click", () => {
   if (expressionParts.length == 0) {
     return;
   }
-  let removedEl = expressionParts.pop();
-  if (
-    removedEl == "+" ||
-    removedEl == "-" ||
-    removedEl == "*" ||
-    removedEl == "/"
-  ) {
+  let valid = checkForSymbol();
+  console.log(valid);
+  if (valid) {
     symbolArray.forEach((symbol) => {
       symbol.disabled = false;
     });
-  } 
+  }
   console.log(expressionParts);
   text.textContent = text.textContent.slice(0, -1);
 });
