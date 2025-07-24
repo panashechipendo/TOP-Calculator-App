@@ -33,22 +33,22 @@ equals.disabled = true;
 period.disabled = false;
 
 function add(a, b) {
-  return (Number(a) + Number(b)).toFixed(2);
+  return (Number(a) + Number(b)).toFixed(1);
 }
 
 function subtract(a, b) {
-  return (Number(a) - Number(b)).toFixed(2);
+  return (Number(a) - Number(b)).toFixed(1);
 }
 
 function multiply(a, b) {
-  return (Number(a) * Number(b)).toFixed(2);
+  return (Number(a) * Number(b)).toFixed(1);
 }
 
 function divide(a, b) {
   if (Number(b) == 0) {
     return alert("Yeah no you don't😂");
   }
-  return (Number(a) / Number(b)).toFixed(2);
+  return (Number(a) / Number(b)).toFixed(1);
 }
 
 function checkForSymbol() {
@@ -144,7 +144,7 @@ zeroToNine.forEach((number) => {
   });
 });
 
-// Will finish later
+// Handles input of periods
 period.addEventListener("click", (e) => {
   let dot = e.target.value;
   let valid = checkForPeriod();
